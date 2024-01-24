@@ -49,7 +49,7 @@ const filterBooks = async (req, res) => {
    let result = []
     result = await bookSchema.find(filter).skip(parseInt(offset || 0)).limit(parseInt(limit || 10));
 
-   // Store the result in Redis cache with an expiration time (e.g==> 20 mins)
+   // Store the result in Redis cache with an expiration time (e.g==> 1 mins)
    await client.store(cacheKey, JSON.stringify(result),60);
  
    return res.status(200).json(result);
